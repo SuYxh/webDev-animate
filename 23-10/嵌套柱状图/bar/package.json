@@ -1,0 +1,19 @@
+{
+  "name": "bar",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "echarts": "^5.4.3",
+    "vite": "^4.4.9"
+  }
+}

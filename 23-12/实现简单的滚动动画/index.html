@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>实现简单的滚动动画</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section>
+<!--  <div class="slide" id="slide1"></div>-->
+  <div class="slide" id="slide2"></div>
+</section>
+<h2>实现简单的滚动动画</h2>
+
+<script>
+  let slider1 = document.querySelector('#slide1')
+  let slider2 = document.querySelector('#slide2')
+  window.addEventListener('scroll', () => {
+    slider1.style.left = window.pageYOffset + 'px'
+    slider2.style.left = -window.pageYOffset + 'px'
+  })
+</script>
+</body>
+</html>

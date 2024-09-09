@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS和Javascript实现星星背景动画 - 前端老鹰</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="sec"></section>
+<script>
+  for (let i = 0; i <= 75; i++) {
+    // 创建一个div
+    let stars = document.createElement('div')
+    // 添加star样式
+    stars.classList.add('star')
+    // 设置样式
+    let size = Math.random() * 20
+    stars.style.fontSize = 10 + size + 'px'
+    stars.style.left = Math.random() * innerWidth + 'px'
+    stars.style.top = Math.random() * innerHeight + 'px'
+    stars.style.filter = `hue-rotate(${i * 5}deg)`
+    document.querySelector('.sec').appendChild(stars)
+  }
+  function animateStars() {
+    let allStars = document.querySelectorAll('.star')
+    // 随机获取星星
+    let num = Math.floor(Math.random() * allStars.length)
+    // 添加animate样式
+    allStars[num].classList.toggle('animate')
+  }
+  // 每50毫秒执行
+  setInterval(animateStars, 50)
+</script>
+</body>
+</html>

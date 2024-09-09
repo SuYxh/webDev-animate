@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ebebeb;
+}
+
+.slider {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  user-select: none;
+}
+
+.knob {
+  width: 220px;
+  height: 220px;
+  background: rgba(222,222,222,1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.rotator {
+  width: 180px;
+  height: 180px;
+  background: rgba(235, 235, 235);
+  border-radius: 50%;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2), inset 1px 2px 1px white, 2px -1px 1px rgba(0, 0, 0, 0.2),  -1px 0 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.rotator .text {
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+  border: 1px solid rgba(17, 16, 16, 1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pointer {
+  position: absolute;
+  width: 110px;
+  height: 20px;
+  left: 0;
+  top: calc(50% - 10px);
+  display: flex;
+  align-items: center;
+  transform-origin: 110px 10px;
+  transform: rotate(-45deg);
+}
+
+.pointer i {
+  transform: translateX(-8px);
+}
+
+circle {
+  fill: none;
+}
+
+circle:nth-child(1) {
+  stroke: rgba(0, 0, 0, 0.7);
+  stroke-width: 15px;
+  stroke-dasharray: 660;
+  transform-origin: center;
+  transform: rotate(135deg);
+  stroke-linecap: round;
+}
+
+circle:nth-child(2) {
+  --size: 0;
+  stroke: dodgerblue;
+  stroke-width: 15px;
+  stroke-dasharray: 880;
+  stroke-dashoffset: calc(880 - (660 * var(--size)) / 100);
+  transform-origin: center;
+  transform: rotate(135deg);
+  stroke-linecap: round;
+}

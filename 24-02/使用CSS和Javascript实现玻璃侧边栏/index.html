@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用CSS和Javascript实现玻璃侧边栏</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section></section>
+
+<div class="sidebar active">
+  <div class="logo-content">
+    <div class="logo">
+      <i class='bx bxl-flutter'></i>
+      <h3>Eagle</h3>
+    </div>
+    <i class='bx bx-menu' id="btn"></i>
+  </div>
+
+  <ul class="list">
+    <li>
+      <a href="#">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Search...">
+      </a>
+    </li>
+    <li class="active">
+      <a href="#">
+        <i class='bx bx-grid-alt' ></i>
+        <span class="links-name">Dashboard</span>
+      </a>
+      <span class="tooltip">Dashboard</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-user' ></i>
+        <span class="links-name">Users</span>
+      </a>
+      <span class="tooltip">Users</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-chat' ></i>
+        <span class="links-name">Message</span>
+      </a>
+      <span class="tooltip">Message</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-pie-chart-alt' ></i>
+        <span class="links-name">Analytics</span>
+      </a>
+      <span class="tooltip">Analytics</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-folder' ></i>
+        <span class="links-name">File Manager</span>
+      </a>
+      <span class="tooltip">File Manager</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-cart-alt' ></i>
+        <span class="links-name">Order</span>
+      </a>
+      <span class="tooltip">Order</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-heart' ></i>
+        <span class="links-name">Saved</span>
+      </a>
+      <span class="tooltip">Saved</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-cog' ></i>
+        <span class="links-name">Setting</span>
+      </a>
+      <span class="tooltip">Setting</span>
+    </li>
+  </ul>
+
+  <ul class="list-logout">
+    <li>
+      <a href="#">
+        <i class="bx bx-log-out"></i>
+        <span class="links-name">Logout</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url("bg.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.text h1 {
+  font-size: 9rem;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  -webkit-text-stroke: 1px #fff;
+  color: transparent;
+  background: url("bg_text.png") 0 0;
+  -webkit-background-clip: text;
+  animation: animateText 20s linear infinite;
+}
+
+@keyframes animateText {
+  100% {
+    background-position: 1000px 0;
+  }
+}

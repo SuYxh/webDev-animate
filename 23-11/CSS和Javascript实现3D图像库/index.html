@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS和Javascript实现3D图像库</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="box">
+    <span style="--i:1"><img src="img1.avif" alt=""></span>
+    <span style="--i:2"><img src="img2.avif" alt=""></span>
+    <span style="--i:3"><img src="img3.avif" alt=""></span>
+    <span style="--i:4"><img src="img4.avif" alt=""></span>
+    <span style="--i:5"><img src="img5.avif" alt=""></span>
+    <span style="--i:6"><img src="img6.avif" alt=""></span>
+    <span style="--i:7"><img src="img7.avif" alt=""></span>
+    <span style="--i:8"><img src="img8.avif" alt=""></span>
+  </div>
+  <!-- 按钮 -->
+  <div class="btns">
+    <div class="btn prev"></div>
+    <div class="btn next"></div>
+  </div>
+</div>
+<script>
+let prev = document.querySelector('.prev')
+let next = document.querySelector('.next')
+let box = document.querySelector('.box')
+
+let degrees = 0
+// 点击左侧按钮
+prev.addEventListener('click', function () {
+  degrees+=45
+  box.style = `transform: perspective(1000px) rotateY(${degrees}deg)`
+})
+// 点击右侧按钮
+next.addEventListener('click', function () {
+  degrees-=45
+  box.style = `transform: perspective(1000px) rotateY(${degrees}deg)`
+})
+
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-size: 16px;
+  font-family: system-ui, sans-serif;
+  line-height: 1.8;
+  color: #0f0f0f;
+  background: #ecedef;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.user {
+  position: relative;
+  width: 250px;
+  height: 350px;
+  padding: 1rem;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 30px 30px 5px #d6d9e2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-img-wrap {
+  position: relative;
+  width: 117px;
+  aspect-ratio: 1;
+  padding: 7px;
+  border-radius: 100%;
+}
+
+.user-img-wrap::after {
+  position: absolute;
+  z-index: 1;
+  content: '';
+  inset: 0;
+  border-radius: 100%;
+  background: linear-gradient(
+    #4cd964,
+    #5ac8fa,
+    #007aff,
+    #7dc8e8,
+    #5856d6,
+    #ff2d55
+  );
+  opacity: 0;
+  transition: opacity 1s;
+  filter: saturate(2) blur(10px);
+  animation: rotate 4s linear infinite;
+  animation-play-state: paused;
+}
+
+.user:hover .user-img-wrap::after {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.user-img-wrap .user-img {
+  aspect-ratio: 1;
+  border-radius: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.user-meta {
+  text-align: center;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.user-location {
+  font-size: 14px;
+  color: #a0a2b6;
+  margin-bottom: 1rem;
+}
+
+.user-profiles {
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

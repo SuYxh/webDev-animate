@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>使用Javascript创建3D菜单</title>
+  <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+<div class='center'>
+  <div class='menu'>
+    <div class='items'>
+      <a href='#' class='item'>Home</a>
+      <a href='#' class='item'>Dashboard</a>
+      <a href='#' class='item'>Messages</a>
+      <a href='#' class='item'>Notifications</a>
+      <a href='#' class='item'>Favourites</a>
+      <a href='#' class='item'>Profile</a>
+      <a href='#' class='item'>Settings</a>
+      <a href='#' class='item'>About</a>
+      <a href='#' class='item'>Support</a>
+
+      <a href='#' class='item'>Home</a>
+      <a href='#' class='item'>Dashboard</a>
+      <a href='#' class='item'>Messages</a>
+      <a href='#' class='item'>Notifications</a>
+      <a href='#' class='item'>Favourites</a>
+      <a href='#' class='item'>Profile</a>
+      <a href='#' class='item'>Settings</a>
+      <a href='#' class='item'>About</a>
+      <a href='#' class='item'>Support</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll('.item');
+  const menu = document.querySelector('.menu');
+
+  let increment = 360 / items.length;
+  let angle = 0;
+  let iterator = angle
+  let threshold = 80;
+  let accumulatedDeltaY = 0
+
+  items.forEach(item => {
+    item.style.transform = `rotateX(${iterator}deg) translateZ(120px)`
+    const opacity = findOpacity(iterator % 360)
+    item.style.opacity = opacity
+
+    if (opacity === 1) {
+      item.className = 'item active'
+    } else {
+      item.className = 'item'
+    }
+
+    iterator += increment
+  })
+
+  function findOpacity(angle) {
+    let newAngle;
+    const _angle = Math.abs(angle)
+    if (_angle >= 0 && _angle <= 90) {
+      newAngle = _angle
+    } else if(_angle > 90 && _angle <= 180) {
+      newAngle = 180 - _angle
+    } else if(_angle > 180 && _angle <= 270) {
+      newAngle = _angle - 180
+    } else {
+      newAngle = 360 - _angle
+    }
+    return 1 - (newAngle / 90)
+  }
+
+  menu.addEventListener('wheel', (e) => {
+    accumulatedDeltaY += e.deltaY
+    if (Math.abs(accumulatedDeltaY) >= threshold) {
+      let rotation = Math.floor(accumulatedDeltaY / threshold) * increment
+      angle += rotation
+
+      let iterator = angle
+      items.forEach(item => {
+        item.style.transform = `rotateX(${iterator}deg) translateZ(120px)`
+        const opacity = findOpacity(iterator % 360)
+        item.style.opacity = opacity
+
+        if (opacity === 1) {
+          item.className = 'item active'
+        } else {
+          item.className = 'item'
+        }
+
+        iterator += increment
+      })
+
+      accumulatedDeltaY = 0
+    }
+
+  })
+
+
+</script>
+</body>
+</html>

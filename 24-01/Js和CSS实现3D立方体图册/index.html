@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Js和CSS实现3D立方体图册</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="box">
+    <div class="card" style="--i:1">
+      <div class="img-box">
+        <img src="./img/嫦娥_漠中幻影_半身像.png" alt="">
+        <h2>嫦娥_漠中幻影 <span>法师</span></h2>
+      </div>
+    </div>
+    <div class="card" style="--i:2">
+      <div class="img-box">
+        <img src="./img/暃_星界游侠_半身像.png" alt="">
+        <h2>暃_星界游侠 <span>刺客</span></h2>
+      </div>
+    </div>
+    <div class="card" style="--i:3">
+      <div class="img-box">
+        <img src="./img/朵莉亚_人鱼之歌_半身像.png" alt="">
+        <h2>朵莉亚_人鱼之歌 <span>辅助</span></h2>
+      </div>
+    </div>
+    <div class="card" style="--i:4">
+      <div class="img-box">
+        <img src="./img/海月_王牌新星_半身像.png" alt="">
+        <h2>海月_王牌新星 <span>法师</span></h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="btns">
+  <div class="prev"><i class='bx bx-chevron-left'></i></div>
+  <div class="next"><i class='bx bx-chevron-right'></i></div>
+</div>
+<script>
+  const prev = document.querySelector('.prev')
+  const next = document.querySelector('.next')
+  const box = document.querySelector('.box')
+  let deg = 0
+
+  prev.addEventListener('click', () => {
+    deg -= 90
+    box.style.transform = `perspective(1000px) rotateY(${deg}deg)`
+  })
+
+  next.addEventListener('click', () => {
+    deg += 90
+    box.style.transform = `perspective(1000px) rotateY(${deg}deg)`
+  })
+
+</script>
+</body>
+</html>

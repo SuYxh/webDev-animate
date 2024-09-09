@@ -1,0 +1,60 @@
+img {
+    width: 300px;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #111;
+    gap: 300px;
+}
+.imgBx {
+    position: relative;
+    width: 300px;
+    height: 400px;
+}
+.imgBx img {
+    position: absolute;
+    z-index: 2;
+}
+.imgBx img:not(:first-child) {
+    animation: animate 4s linear infinite;
+    animation-delay: calc(-0.8s * var(--i));
+    opacity: 0.5;
+    z-index: 1;
+}
+@keyframes animate {
+    0% {
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+    }
+    100% {
+        top: 150px;
+        left: -250px;
+        opacity: 0;
+    }
+}
+.imgBx:nth-child(2) img:not(:first-child) {
+    animation: animate-two 4s linear infinite;
+    animation-delay: calc(-0.8s * var(--i));
+    opacity: 0.5;
+    z-index: 1;
+}
+@keyframes animate-two {
+    0% {
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+    }
+    100% {
+        top: 150px;
+        left: 250px;
+        opacity: 0;
+    }
+}

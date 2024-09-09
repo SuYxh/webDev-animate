@@ -1,0 +1,24 @@
+.cover {
+    width: 320px;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+}
+.cover img {
+    width: 320px;
+}
+
+#canvas, .prize {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    top: 110px;
+    right: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 40px;
+}
+.prize {
+    text-shadow: 0 1px 0 #fff;
+}

@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.layers {
+  width: 200%;
+  height: 100%;
+  display: flex;
+  transition: cubic-bezier(0.71, 0, 0.36, 1) 0.8s;
+}
+
+.layer {
+  width: 100vw;
+  height: 100%;
+  background: rgb(255,239,219);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.layer:nth-child(2) {
+  background: rgb(229,254,193);
+}
+
+.layer .text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 175px;
+  font-weight: 500;
+  color: rgb(255,213,159);
+  transition: cubic-bezier(0.71, 0, 0.36, 1) 1.2s;
+}
+
+.layer:nth-child(2) .text {
+  color: rgb(181,235,115);
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  margin-top: 75px;
+}
+
+.can {
+  width: 200px;
+}
+
+.can img {
+  width: 200px;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  mix-blend-mode: multiply;
+  transition: cubic-bezier(0.71, 0, 0.36, 1) 1.2s;
+}
+
+.wrapper img {
+  height: 100%;
+  mix-blend-mode: multiply;
+}
+
+#toggle:checked ~ .main .layers {
+  transform: translateX(-50%);
+}
+
+#toggle:checked ~ .main .layers .layer:nth-child(1) .text {
+  left: 150%;
+}
+
+#toggle:checked ~ .main .layers .layer:nth-child(1) .wrapper {
+  left: -50%;
+}
+
+#toggle:not(:checked) ~ .main .layers .layer:nth-child(2) .text {
+  left: -50%;
+}
+
+#toggle:not(:checked) ~ .main .layers .layer:nth-child(2) .wrapper {
+  left: 150%;
+}
+
+.fruits {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: cubic-bezier(0.71, 0, 0.36, 1) 1.2s;
+}
+
+.fruits img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: cubic-bezier(0.71, 0, 0.36, 1) 1.2s;
+}
+
+.fruits img:nth-child(1) {
+  width: 125px;
+  transform: translate(calc(-50% - 225px), calc(-50% - 150px));
+}
+
+.fruits img:nth-child(2) {
+  width: 100px;
+  transform: translate(calc(-50% + 275px), calc(-50% - 50px));
+}
+
+.fruits img:nth-child(3) {
+  width: 250px;
+  transform: translate(calc(-50% - 175px), calc(-50% + 115px));
+}
+
+#toggle:checked ~ .main .layers .layer:nth-child(1) .fruits {
+  left: 150%;
+}
+
+#toggle:checked ~ .main .layers .layer:nth-child(1) .fruits img {
+  transform: translate(-100%, -50%);
+}
+
+#toggle:not(:checked) ~ .main .layers .layer:nth-child(2) .fruits {
+  left: 0;
+}
+
+#toggle:not(:checked) ~ .main .layers .layer:nth-child(2) .fruits img {
+  transform: translate(-100%, -50%);
+}
+
+.layer label {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid black;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 75px;
+}
+
+#toggle {
+  display: none;
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端实现刮刮卡效果</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cover">
+  <img src="img/gua.jpg">
+  <div id="prize" class="prize">二等奖</div>
+  <canvas id="canvas" width="150" height="40"></canvas>
+</div>
+
+<script>
+  // 随机中奖
+  const $prize = document.querySelector('#prize')
+  const prizes = ["一等奖", "二等奖", "三等奖", "未中奖"];
+  $prize.innerText = prizes[random(0, prizes.length)]
+
+  // 设置涂刮层
+  const $canvas = document.querySelector('#canvas')
+  const ctx = canvas.getContext('2d')
+  ctx.fillStyle = '#A9A9A7'
+  ctx.fillRect(0, 0, 150, 40)
+
+  const w = 10, h = 10;
+  $canvas.onmousedown = function () {
+    $canvas.onmousemove = function (e) {
+      const offsetLeft = $canvas.offsetLeft + $canvas.offsetParent.offsetLeft
+      const offsetTop = $canvas.offsetTop + $canvas.offsetParent.offsetTop
+      const x = e.pageX - offsetLeft - w / 2
+      const y = e.pageY - offsetTop - h / 2
+      ctx.clearRect(x, y, w, h)
+    }
+  }
+  $canvas.onmouseup = function () {
+    canvas.onmousemove = null
+  }
+
+  /**
+   * 随机函数
+   * @param min 最小值
+   * @param max 最大值
+   */
+  function random(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min)
+  }
+</script>
+</body>
+</html>

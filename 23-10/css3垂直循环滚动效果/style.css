@@ -1,0 +1,97 @@
+* {
+    margin:0;
+    padding:0;
+    font-size: 12px;
+    list-style:none;
+    text-decoration: none;
+}
+.main-group{
+    box-sizing: border-box;
+    width:100%;
+    min-height:100vh;
+    padding:0 5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, #bea2e7 0%,#86b7e7 100% );
+    line-height:24px;
+}
+
+.main-group .items-group{
+    background: #fff;
+    max-width: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 100px 20px 20px 100px;
+    padding: 6px 20px 6px 6px;
+    box-sizing: border-box;
+    animation: animate 15s linear infinite;
+    animation-delay: calc(3s * var(--delay));
+    position: absolute;
+    opacity: 0;
+}
+@keyframes animate {
+    0%{
+        opacity: 0;
+        transform: translateY(100%) scale(0.5);
+    }
+    5%, 20%{
+        opacity: 0.4;
+        transform: translateY(100%) scale(0.7);
+    }
+    25%, 40%{
+        opacity: 1;
+        z-index: 1;
+        pointer-events: auto;
+        transform: translateY(0%) scale(1);
+    }
+    45%, 60%{
+        opacity: 0.4;
+        transform: translateY(-100%) scale(0.7);
+    }
+    65%,100%{
+        opacity: 0;
+        transform: translateY(-100%) scale(0.5);
+    }
+}
+.main-group .items-group:last-child{
+    animation-delay: calc(-3s * var(--delay));
+}
+.main-group .items-group .items-box{
+    display: flex;
+    align-items: center;
+}
+.main-group .items-group .img{
+    width: 90px;
+    height: 90px;
+}
+.items-group .img img{
+    width:100%;
+    height:100%;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #888888;
+}
+.main-group .items-group .desc{
+    margin-left:20px;
+    font-size: 12px;
+}
+.main-group .items-group .desc .name{
+    font-size: 16px;
+    font-weight: bold;
+}
+.main-group .items-group .follow-btn{
+    border-radius: 16px;
+    font-weight: bold;
+    padding:5px 26px;
+    color: #fff;
+    background: linear-gradient(to bottom, #bea2e7 0%,#86b7e7 100% );
+}
+.main-group .items-group .del-follow{
+    background: linear-gradient(to bottom, #1f1f1f 0%,#a8a8a8 100% );
+}
+
+.main-group.no-animation .items-group{
+    animation-play-state: paused;
+}

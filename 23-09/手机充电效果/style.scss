@@ -1,0 +1,301 @@
+@mixin radius() {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  filter: blur(10px);
+  bottom: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.phone {
+  --width: 320px;
+  --height: 490px;
+  margin: auto auto 0;
+  width: var(--width);
+  height: var(--height);
+  position: relative;
+}
+
+.text {
+  font-family: sans-serif;
+  color: darkgray;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 100px;
+  font-size: 17px;
+}
+
+.status {
+  width: 190px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: white;
+  position: absolute;
+  top: 125px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 3;
+
+  .progress {
+    font-size: 3em;
+    font-family: sans-serif;
+    margin-left: 8px;
+    display: flex;
+    color: transparent;
+    > small {
+      font-size: 18px;
+      margin-left: 15px;
+      color: white;
+    }
+    &::before {
+      content: '99';
+      color: white;
+      animation: count 12s forwards;
+    }
+  }
+
+  .charging {
+    background: white;
+    width: 11px;
+    height: 11px;
+    transform: skew(0deg, -45deg) rotate(47deg) scale(0.7);
+
+    &::before {
+      content: '';
+      position: absolute;
+      border-width: 7px 5px 15px 7px;
+      border-style: solid;
+      top: -18px;
+      border-color: transparent transparent white transparent;
+      transform: rotate(5deg) skew(-10deg -5deg);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      border-width: 7px 5px 15px 7px;
+      border-style: solid;
+      bottom: -18px;
+      border-color: transparent transparent white transparent;
+      transform: rotate(-175deg) skew(-10deg, 5deg);
+      left: 6px;
+    }
+  }
+}
+
+.contrast {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  filter: contrast(20);
+
+  .blackhole {
+    width: 210px;
+    height: 210px;
+    filter: blur(10px);
+    margin: auto;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: lime;
+      border-radius: 45% 55% 43% 57% / 41% 39% 61% 50%;
+      box-shadow: -3px -1px 0 15px lime, 0 3px 0 18px lime;
+      transform: rotate(426deg);
+      animation: rotate 20s linear infinite, radius 20s linear infinite;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      background: #000;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .lithium {
+    position: absolute;
+    z-index: -1;
+    bottom: -19px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: lime;
+    width: 70px;
+    height: 50px;
+    border-radius: 45% 55% 48% 52% / 56% 43% 57% 44%;
+    filter: blur(10px);
+    animation: radius 8s linear infinite;
+    transform: rotate(-1deg);
+    &::after {
+      content: '';
+      border-radius: 45% 55% 48% 52% / 56% 43% 57% 44%;
+      position: absolute;
+      background: lime;
+      width: 70px;
+      height: 50px;
+      bottom: -8px;
+      left: -25px;
+      animation: radius 7s linear infinite;
+      animation-delay: 2s;
+    }
+    &::before {
+      @include radius;
+      left: 0;
+      animation: lithium 7s forwards infinite, radius 20s linear infinite;
+    }
+    i:nth-child(1)::before {
+      @include radius;
+      left: 10px;
+      animation: lithium 4s forwards infinite, radius 10s linear infinite;
+    }
+    i:nth-child(1)::after {
+      @include radius;
+      left: 30px;
+      transform: scale(0.8);
+      animation: lithium 5s forwards infinite, radius 10s linear infinite;
+      animation-delay: 1s;
+    }
+    i:nth-child(2)::before {
+      @include radius;
+      left: 20px;
+      animation: lithium 6s forwards infinite, radius 10s linear infinite;
+      animation-delay: 2s;
+    }
+    i:nth-child(2)::after {
+      @include radius;
+      left: -20px;
+      transform: scale(0.9);
+      animation: lithium2 5s forwards infinite, radius 10s linear infinite;
+      animation-delay: 3s;
+    }
+    i:nth-child(3)::before {
+      @include radius;
+      left: 35px;
+      animation: lithium3 3s forwards infinite, radius 10s linear infinite;
+      animation-delay: 2s;
+    }
+    i:nth-child(3)::after {
+      @include radius;
+      left: -20px;
+      transform: scale(0.9);
+      animation: lithium3 5s forwards infinite, radius 6s linear infinite;
+      animation-delay: 3s;
+    }
+    i:nth-child(4)::before {
+      @include radius;
+      left: 45px;
+      animation: lithium4 9s forwards infinite, radius 10s linear infinite;
+      animation-delay: 5s;
+    }
+    i:nth-child(4)::after {
+      @include radius;
+      left: -20px;
+      transform: scale(1.1);
+      animation: lithium4 5s forwards infinite, radius 6s linear infinite;
+      animation-delay: 6s;
+    }
+  }
+}
+
+@keyframes lithium {
+  0% {
+    box-shadow: 20px -3vh 10px lime;
+  }
+  100% {
+    border-radius: 45% 55% 48 52% / 56% 43% 57% 44%;
+    box-shadow: 40px -43vh 0 20px lime;
+    transform: scale(1);
+  }
+}
+
+@keyframes lithium2 {
+  0% {
+    box-shadow: 20px -5vh 10px lime;
+  }
+  100% {
+    box-shadow: 20px -45vh 0 20px lime;
+  }
+}
+@keyframes lithium3 {
+  0% {
+    box-shadow: 9px -7vh 6px lime;
+  }
+  100% {
+    box-shadow: 14px -45vh 0 20px lime;
+  }
+}
+@keyframes lithium4 {
+  0% {
+    box-shadow: 9px -5vh 7px lime;
+  }
+  100% {
+    box-shadow: 14px -45vh 0 14px lime;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radius {
+  0% {
+    border-radius: 45% 55% 43% 57% / 41% 39% 61% 59%;
+  }
+  15% {
+    border-radius: 45% 50% 48% 52% / 55% 39% 61% 45%;
+  }
+  25% {
+    border-radius: 45% 55% 39% 61% / 55% 30% 70% 45%;
+  }
+  50% {
+    border-radius: 45% 55% 28% 72% / 56% 61% 39% 44%;
+  }
+  80% {
+    border-radius: 73% 27% 28% 72% / 74% 61% 39% 26%;
+  }
+  100% {
+    border-radius: 45% 55% 43% 57% / 41% 39% 61% 59%;
+  }
+}
+
+@keyframes count {
+  @for $i from 0 to 99 {
+    #{$i}% {
+      content: '#{$i}';
+    }
+  }
+}

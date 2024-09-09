@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <ul id="container">
+    <li>项目 1</li>
+    <li>项目 2</li>
+    <li>项目 3</li>
+    <li>项目 4</li>
+    <div>我是div</div>
+  </ul>
+
+  <button onclick="add()">新增数据</button>
+
+  <script>
+    const container = document.querySelector('#container');
+
+    const liElement = container.querySelectorAll('li')
+    // for (let i = 0; i < liElement.length; i++) {
+    //   liElement[i].onclick = function (e) {
+    //     console.log(e.target.innerText)
+    //   }
+    // }
+
+    function add() {
+      let html = ''
+      for (let i = 0; i < 10; i++) {
+        html += `<li>我是新增的${i}</li>`
+      }
+      container.innerHTML = container.innerHTML + html
+    }
+
+    container.addEventListener('click', function(event) {
+      if (event.target.tagName === 'LI') {
+        console.log(event.target.innerText);
+      }
+    });
+
+  </script>
+
+</body>
+</html>

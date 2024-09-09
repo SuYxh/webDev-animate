@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #161616;
+}
+
+:root {
+  --color: #c7f80d;
+  --bgColor: #55650a;
+  --borderColor: #161616;
+}
+
+ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 60px;
+  background: #242424;
+  border-radius: 30px;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul li a {
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  z-index: 1000;
+  color: #444;
+}
+
+ul li a ion-icon {
+  font-size: 2.5rem;
+  transition: 0.5s;
+}
+
+ul li:hover a ion-icon {
+  color: var(--color);
+  filter: drop-shadow(0 0 15px var(--color));
+}
+
+ul li.active a ion-icon {
+  color: var(--color);
+  filter: drop-shadow(0 0 15px var(--color));
+  transform: translateY(-50px);
+}
+
+#marker {
+  position: absolute;
+  left: 240px;
+  top: -40px;
+  width: 80px;
+  height: 80px;
+  background: var(--bgColor);
+  border-radius: 20px;
+  border-top: 2px solid var(--color);
+  border-left: 2px solid var(--color);
+  box-shadow: 0 0 0 10px var(--borderColor),
+              0 2px 0 9px var(--color);
+  transition: 0.5s;
+}
+
+#marker::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: -32px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 4px -4px 0 4px var(--borderColor);
+}
+
+
+#marker::after {
+  content: '';
+  position: absolute;
+  top: 38px;
+  right: -30px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-left-radius: 20px;
+  box-shadow: -4px -4px 0 4px var(--borderColor);
+}
+
+#marker span {
+  position: absolute;
+  top: 112px;
+  width: 120%;
+  left: -10%;
+  height: 30px;
+  background: var(--bgColor);
+  box-shadow: 0 0 0 10px var(--borderColor),
+              0 -2px 0 9px var(--color);
+  border-radius: 20px;
+  border-left: 1px solid var(--color);
+  border-right: 1px solid var(--color);
+}
+
+ul li span {
+  position: absolute;
+  transform: translateY(40px);
+  font-size: 0.8em;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+ul li.active span {
+  opacity: 1;
+  color: var(--color);
+  filter: drop-shadow(0 0 10px var(--color));
+}
+
+

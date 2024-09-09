@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>移动端导航动画效果 </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<ul>
+  <li>
+    <a href="#"><ion-icon name="home"></ion-icon><span>首页</span></a>
+  </li>
+  <li>
+    <a href="#"><ion-icon name="person"></ion-icon><span>用户</span></a>
+  </li>
+  <li class="active">
+    <a href="#"><ion-icon name="add-circle"></ion-icon><span>创建</span></a>
+  </li>
+  <li>
+    <a href="#"><ion-icon name="settings"></ion-icon><span>设置</span></a>
+  </li>
+  <li>
+    <a href="#"><ion-icon name="chatbubble"></ion-icon><span>聊天</span></a>
+  </li>
+  <div id="marker"><span></span></div>
+</ul>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+  const marker = document.querySelector('#marker')
+  const list = document.querySelectorAll('ul li')
+
+  list.forEach(item => {
+    item.addEventListener('click', () => {
+      list.forEach(value => {
+        value.classList.remove('active')
+      })
+      item.classList.add('active')
+      marker.style.left = item.offsetLeft + 'px'
+      marker.style.width = item.offsetWidth + 'px'
+    })
+  })
+
+</script>
+</body>
+</html>

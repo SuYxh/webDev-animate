@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  height: 100vh;
+  background: #000;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  color: #ddd;
+  font-size: 5em;
+  font-family: sans-serif;
+  letter-spacing: 0.2em;
+}
+
+h1 span {
+  opacity: 0;
+  display: inline-block;
+  animation: animate 1s linear forwards;
+  /*animation-delay: calc(var(--i) * 1s);*/
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotateY(90deg);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+    filter: blur(0);
+  }
+}
+
+video {
+  object-fit: cover;
+}
+
+h1 span {
+  animation-delay: calc(var(--i) * 1s);
+}

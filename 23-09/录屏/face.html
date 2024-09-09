@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>人脸检测</title>
+  <script src="face-api.min.js"></script>
+</head>
+<body>
+<div style="position: relative">
+  <canvas id="canvas" style="position: absolute; left: 0; top: 0; z-index: 1"></canvas>
+  <video autoplay playsInline muted></video>
+</div>
+<script>
+  // 加载模型并开始人脸检测
+  Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri('models'),  // 加载人脸检测器模型
+    faceapi.nets.faceLandmark68Net.loadFromUri('models'), // 加载人脸特征点模型
+    faceapi.nets.faceRecognitionNet.loadFromUri('models'), // 加载人脸识别模型
+    faceapi.nets.faceExpressionNet.loadFromUri('models'),  // 加载表情识别模型
+    faceapi.nets.ageGenderNet.loadFromUri('models') // 加载年龄和性别识别模型
+  ]).then(startDetection);  // 加载完成后开始人脸检测
+
+  const width = 620, height = 360;  // 设置视频宽度和高度
+
+  // 开始人脸检测
+  async function startDetection() {
+    // 获取视频流
+    const video = document.querySelector('video'); // 获取视频元素
+    const canvas = document.getElementById('canvas'); // 获取画布元素
+
+    // 确保视频成功加载
+    if (!video) {
+      console.error('Video or mask image not found.');
+      return;
+    }
+
+    try {
+      // 获取用户媒体设备中的视频流
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { width, height } })
+      if ("srcObject" in video) {
+        video.srcObject = stream;
+      } else {
+        // Avoid using this in new browsers
+        video.src = window.URL.createObjectURL(stream);
+      }
+      console.log('Video stream has been captured.');
+    } catch (error) {
+      console.error('Error accessing user media:', error);
+      alert('Error accessing user media:')
+    }
+
+    // 检测人脸并绘制边框
+    video.addEventListener('play', () => {
+      const displaySize = { width, height }; // 设置画布大小与视频大小一致
+      faceapi.matchDimensions(canvas, displaySize); // 匹配画布和视频尺寸
+
+      setInterval(async () => {
+        // 检测视频中的人脸并获取关键点、表情和性别
+        const detections = await faceapi
+          .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withAgeAndGender();
+        const resizedDetections = faceapi.resizeResults(detections, displaySize); // 根据画布大小调整检测结果的尺寸
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height); // 清除画布上的内容
+        faceapi.draw.drawDetections(canvas, resizedDetections); // 绘制人脸边框
+        faceapi.draw.drawFaceLandmarks(canvas, resizedDetections); // 绘制人脸关键点
+        faceapi.draw.drawFaceExpressions(canvas, resizedDetections); // 绘制人脸表情
+
+        // 遍历并绘制性别信息
+        resizedDetections.forEach(result => {
+          const { age, gender, genderProbability } = result;
+
+          // 绘制性别信息
+          new faceapi.draw.DrawTextField(
+            [
+              `${faceapi.utils.round(age, 0)} years old`,
+              `${gender} (${faceapi.utils.round(genderProbability)})`
+            ],
+            result.detection.box.bottomLeft
+          ).draw(canvas);
+
+        });
+      }, 100); // 每100毫秒进行一次检测和绘制
+    });
+  }
+
+</script>
+</body>
+</html>

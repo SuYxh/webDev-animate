@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container .block {
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  background-image: url("2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw auto;
+}

@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000;
+}
+
+#shimmer-wave {
+  color: #46afc8;
+  font-size: 16px;
+  font-weight: 600;
+  perspective: 80px;
+  transform-style: preserve-3d;
+}
+
+#shimmer-wave span {
+  position: relative;
+  display: inline-block;
+  animation: wave 2.4s ease infinite;
+  animation-delay: calc(var(--i) * .05s);
+  letter-spacing: 0.01em;
+  transform-origin: 100% 50%;
+  transform-style: preserve-3d;
+}
+
+
+@keyframes wave {
+  0% {
+    transform: translate3D(0,0,0) scale(1) rotateY(0);
+    color: #46afc8;
+    text-shadow: 0 0 0 #46afc8;
+  }
+  12% {
+    transform: translate3D(2px,-2px,2px) scale(1.16) rotateY(6deg);
+    color: #46afc8;
+    filter: brightness(3);
+  }
+  15% {
+    text-shadow: 0 0 2px #46afc8;
+  }
+  24% {
+    transform: translate3D(0,0,0) scale(1) rotateY(0);
+    color: #46afc8;
+    filter: brightness(1);
+    opacity: 1;
+  }
+  36% {
+    transform: translate3D(0,0,0) scale(1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: .8;
+  }
+}
+

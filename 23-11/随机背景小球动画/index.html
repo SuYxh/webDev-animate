@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>随机背景小球动画</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="box">
+  <div class="circle"></div>
+</div>
+<script>
+  function changeBG() {
+    const r = Math.floor(Math.random() * 255)
+    const b = Math.floor(Math.random() * 255)
+    const g = Math.floor(Math.random() * 255)
+    document.body.style.background = `rgb(${r},${b},${g})`
+  }
+  setInterval(changeBG, 1000)
+</script>
+</body>
+</html>

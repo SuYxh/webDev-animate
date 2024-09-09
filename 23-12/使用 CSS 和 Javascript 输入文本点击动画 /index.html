@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用 CSS 和 Javascript 输入文本波浪动画 </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="input-box">
+  <input type="text" required>
+  <label>请 输 入 您 的 用 户 名 称</label>
+</div>
+<script>
+  let label = document.querySelector('label')
+  label.innerHTML = label.innerText.split('')
+    .map((letters, i) => {
+      return `<span
+        style="transition-delay: ${i * 30}ms;
+        filter: hue-rotate(${i * 10}deg)"
+      >
+      ${ letters }
+      </span>`
+    }).join('')
+</script>
+</body>
+</html>

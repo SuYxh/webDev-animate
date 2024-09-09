@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仿小红书卡片弹出效果</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="item"><img src="img/1.png" alt=""></div>
+  <div class="item"><img src="img/2.png" alt=""></div>
+  <div class="item"><img src="img/3.png" alt=""></div>
+  <div class="item"><img src="img/4.png" alt=""></div>
+  <div class="item"><img src="img/5.png" alt=""></div>
+  <div class="item"><img src="img/6.png" alt=""></div>
+  <div class="item"><img src="img/7.png" alt=""></div>
+  <div class="item"><img src="img/8.png" alt=""></div>
+  <div class="item"><img src="img/1.png" alt=""></div>
+  <div class="item"><img src="img/2.png" alt=""></div>
+  <div class="item"><img src="img/3.png" alt=""></div>
+  <div class="item"><img src="img/4.png" alt=""></div>
+  <div class="item"><img src="img/5.png" alt=""></div>
+  <div class="item"><img src="img/6.png" alt=""></div>
+  <div class="item"><img src="img/7.png" alt=""></div>
+  <div class="item"><img src="img/8.png" alt=""></div>
+  <div class="item"><img src="img/1.png" alt=""></div>
+  <div class="item"><img src="img/2.png" alt=""></div>
+  <div class="item"><img src="img/3.png" alt=""></div>
+  <div class="item"><img src="img/4.png" alt=""></div>
+  <div class="item"><img src="img/5.png" alt=""></div>
+  <div class="item"><img src="img/6.png" alt=""></div>
+  <div class="item"><img src="img/7.png" alt=""></div>
+  <div class="item"><img src="img/8.png" alt=""></div>
+</div>
+<div class="mark"></div>
+
+<script>
+  const $mark = document.querySelector('.mark')
+  const $container = document.querySelector('.container')
+  let scale = 1
+  //
+  $container.addEventListener('click', function (e) {
+    if (e.target.tagName === 'IMG') {
+      setDialogAnimation(e.target)
+    }
+  })
+  //
+  // // 添加显示动画
+  function setDialogAnimation(target) {
+    $mark.style.background = 'rgba(255,255,255,.95)'
+    $mark.style.zIndex = 100
+    scale = target.offsetWidth / 500
+    const left = target.getBoundingClientRect().left
+    let top = target.getBoundingClientRect().top
+    // // 图片容器高度小于缩放后的弹层高度
+    if (target.offsetHeight < 660 * scale) {
+      top = top - (660 * scale - target.offsetHeight) / 2
+    }
+    const dialogHtml = `<div
+                        class="dialog"
+                        style="left:${left}px;top:${top}px;transform: scale(${scale})">
+                          <div class="box">
+                            <div class="left">
+                              <img src="${target.src}" alt="">
+                            </div>
+                            <div class="right">loading...</div>
+                          </div>
+                      </div>`
+    const $styleEl = document.createElement('style')
+    $styleEl.id = 'animateBlowUp'
+    $styleEl.innerHTML = `@keyframes animateBlowUp {
+          0% {
+              width: 500px;
+              transform: scale(${scale});
+          }
+          100% {
+              width: 800px;
+              left: calc(50% - 400px);
+              top: calc(50% - 330px);
+              transform: scale(1);
+          }
+      }`
+    document.head.appendChild($styleEl)
+    $mark.innerHTML = dialogHtml
+    document.querySelector('.dialog').classList.add('blow-up')
+    window.history.pushState({}, '', '/xxx');
+  }
+  //
+  // // 点击遮罩层隐藏
+  $mark.addEventListener('click', function () {
+    $mark.style.background = 'transparent'
+    const $styleEl = document.createElement('style')
+    $styleEl.id = 'animateMinification'
+    $styleEl.innerHTML = `@keyframes animateMinification {
+            0% {
+                width: 800px;
+                left: calc(50% - 400px);
+                top: calc(50% - 330px);
+                transform: scale(1);
+            }
+            100% {
+                width: 500px;
+                transform: scale(${scale});
+            }
+        }`
+    const $dialog = document.querySelector('.dialog')
+    document.head.appendChild($styleEl)
+    $dialog.classList.remove('blow-up')
+    $dialog.classList.add('minification')
+    $dialog.addEventListener('animationend', function () {
+      $mark.style.zIndex = -1
+      $mark.innerHTML = ''
+      const animateBlowUpEl = document.querySelector('#animateBlowUp')
+      const minificationEl = document.querySelector('#animateMinification')
+      if (animateBlowUpEl) {
+        animateBlowUpEl.remove()
+      }
+      if (minificationEl) {
+        minificationEl.remove()
+      }
+      window.history.back()
+    })
+  })
+</script>
+</body>
+</html>

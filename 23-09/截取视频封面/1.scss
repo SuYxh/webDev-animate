@@ -1,0 +1,26 @@
+@property --start-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #fff
+}
+@property --end-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #000
+}
+
+
+@property --end {
+  syntax: '<length>';
+}
+
+div {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, var(--start-color), var(--end-color));
+  transition: 1s --start-color, 1s --end-color;
+}
+div:hover {
+  --start-color: yellow;
+  --end-color: #f30000;
+}

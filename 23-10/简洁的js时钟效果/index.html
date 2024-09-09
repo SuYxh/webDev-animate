@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>简洁的js时钟效果</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+      }
+      body {
+          background-color: #dfdad4;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .clock {
+          position: relative;
+          border-radius: 100%;
+          box-shadow: 2px 10px 10px 10px rgba(0, 0, 0, 0.3),
+          inset 2px 20px 10px 10px rgba(0, 0, 0, 0.3);
+          width: 250px;
+          height: 250px;
+      }
+      .ring {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border: 20px solid black;
+          border-radius: 100%;
+          box-sizing: border-box;
+          border-left: 20px solid white;
+          border-right: 20px solid white;
+      }
+      .ring-bit {
+          position: absolute;
+          width: 150px;
+          height: 350px;
+          border: 20px solid transparent;
+          border-radius: 90px;
+          margin: auto;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          top: 0;
+          border-bottom: 20px solid white;
+      }
+      .ring-bit:before {
+          content: "";
+          position: absolute;
+          width: 150px;
+          height: 350px;
+          border: 20px solid transparent;
+          border-radius: 90px;
+          margin: auto;
+          left: -15%;
+          bottom: 0;
+          right: 0;
+          top: 5%;
+          border-bottom: 20px solid rgba(0, 0, 0, 0.2);
+          filter: blur(5px);
+          z-index: -1;
+      }
+
+
+      .panel {
+          position: absolute;
+          height: 180px;
+          width: 180px;
+          background-color: black;
+          margin: auto;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          border-radius: 100%;
+      }
+      .panel:after {
+          content: "EAGLE";
+          position: absolute;
+          top: 48px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          color: silver;
+          font-size: 11px;
+          text-align: center;
+      }
+
+      .string1,
+      .string2,
+      .string3 {
+          position: absolute;
+          width: 3px;
+          height: 180px;
+          border-top: 30px solid black;
+          border-bottom: 30px solid black;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+      }
+      .string1 {
+          transform: rotate(45deg);
+      }
+      .string2 {
+          transform: rotate(135deg);
+      }
+      .string3 {
+          transform: rotate(0deg);
+          border-bottom: 200px solid black;
+          border-top: 0;
+      }
+      .hour,
+      .minute,
+      .second {
+          position: absolute;
+          background-color: white;
+          margin: auto;
+          left: 0;
+          right: 0;
+          transform-origin: bottom center;
+      }
+      .hour {
+          height: 50px;
+          width: 5px;
+          top: 75px;
+          border-radius: 10px;
+      }
+      .minute {
+          height: 65px;
+          width: 3.5px;
+          top: 60px;
+          border-radius: 10px;
+      }
+      .second {
+          height: 70px;
+          width: 2px;
+          top: 55px;
+          border-radius: 3px;
+      }
+      .number {
+          font-size: 1.2em;
+          color: white;
+      }
+      .number span {
+          width: 180px;
+          height: 180px;
+          position: absolute;
+          margin: auto;
+      }
+      .number span:nth-child(1) {
+          left: 160px;
+          right: 0;
+          top: 20px;
+          bottom: 0;
+      }
+      .number span:nth-child(2) {
+          left: 190px;
+          right: 0;
+          top: 80px;
+          bottom: 0;
+      }
+      .number span:nth-child(3) {
+          left: 200px;
+          right: 0;
+          top: 155px;
+          bottom: 0;
+      }
+      .number span:nth-child(4) {
+          left: 188px;
+          right: 0;
+          top: 235px;
+          bottom: 0;
+      }
+      .number span:nth-child(5) {
+          left: 160px;
+          right: 0;
+          top: 270px;
+          bottom: 0;
+      }
+      .number span:nth-child(6) {
+          left: 120px;
+          right: 0;
+          top: 280px;
+          bottom: 0;
+      }
+      .number span:nth-child(7) {
+          left: 80px;
+          right: 0;
+          top: 270px;
+          bottom: 0;
+      }
+      .number span:nth-child(8) {
+          left: 30px;
+          right: 0;
+          top: 235px;
+          bottom: 0;
+      }
+      .number span:nth-child(9) {
+          left: 10px;
+          right: 0;
+          top: 155px;
+          bottom: 0;
+      }
+      .number span:nth-child(10) {
+          left: 25px;
+          right: 0;
+          top: 80px;
+          bottom: 0;
+      }
+      .number span:nth-child(11) {
+          left: 75px;
+          right: 0;
+          top: 20px;
+          bottom: 0;
+      }
+      .number span:nth-child(12) {
+          left: 113px;
+          right: 0;
+          top: 0;
+          bottom: 0;
+      }
+      .pin {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          background-color: orange;
+          border: 2px solid white;
+          border-radius: 100%;
+      }
+      .light {
+          position: absolute;
+          width: 50px;
+          height: 30px;
+          top: 0;
+          border-radius: 100%;
+          background-color: white;
+          box-shadow: 0 0 10px 5px white;
+      }
+      .light-ray {
+          position: absolute;
+          width: 200px;
+          height: 200px;
+          top: 5%;
+          border-radius: 50px;
+          background-image: linear-gradient(45deg, transparent, transparent, white);
+          transform: rotate(-45deg);
+      }
+  </style>
+</head>
+<body>
+<!-- 添加灯光效果 -->
+<div class="light"></div>
+<div class="light-ray"></div>
+<div class="clock">
+    <div class="string1"></div>
+    <div class="string2"></div>
+    <div class="string3"></div>
+    <div class="ring-bit"></div>
+    <div class="ring"></div>
+    <div class="panel"></div>
+    <div class="hour"></div>
+    <div class="minute"></div>
+    <div class="second"></div>
+    <!--  时钟圆盘添加小圆点  -->
+    <div class="pin"></div>
+    <div class="number">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+      <span>6</span>
+      <span>7</span>
+      <span>8</span>
+      <span>9</span>
+      <span>10</span>
+      <span>11</span>
+      <span>12</span>
+    </div>
+</div>
+
+<script>
+  requestAnimationFrame(myClock);
+  function myClock() {
+    const myDate = new Date();
+    const hours = ((myDate.getHours() + 11) % 12) + 1;
+    const minutes = myDate.getMinutes();
+    const seconds = myDate.getSeconds();
+    const hDegree = hours * 30;
+    const mDegree = minutes * 6;
+    const sDegree = seconds * 6;
+    document.querySelector(".hour").style.transform = `rotate(${hDegree}deg)`;
+    document.querySelector(".minute").style.transform = `rotate(${mDegree}deg)`;
+    document.querySelector(".second").style.transform = `rotate(${sDegree}deg)`;
+    requestAnimationFrame(myClock);
+  }
+</script>
+
+</body>
+</html>

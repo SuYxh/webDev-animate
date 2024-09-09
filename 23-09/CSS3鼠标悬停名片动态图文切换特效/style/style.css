@@ -1,0 +1,116 @@
+html, body{
+	width:100%;
+	min-height: 100vh;
+}
+*{
+	margin:0;
+	padding:0;
+	font-size: 12px;
+}
+
+body{
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.main-group{
+	position: relative;
+	max-width: 50em;
+	width:80%;
+	min-height: 27em;
+	border: 0.8em solid rgb(204, 212, 230);
+	background-color: rgb(120, 140, 200);
+	overflow: hidden;
+	border-radius: 1.5em;
+	display: flex;
+	align-items: center;
+}
+.main-group .one-page-group {
+	position: absolute;
+	width:30%;
+	left: 0;
+	margin:0 5em;
+	transition: 1s;
+	z-index: 1;
+	
+}
+.main-group .one-page-group a{
+	color: #fff;
+	font-weight: 900;
+	font-size: 2em;
+}
+.main-group .one-page-group h3{
+	font-size:1.4em;
+	transition:.5s 1s;
+	opacity: 0;
+	color: rgb(30, 210, 200);
+	margin-top:0em;
+}
+.main-group .one-page-group span{
+	transition: .5s 1s;
+	color: #fff;
+	top:2em;
+	display: block;
+	line-height:1.5em;
+}
+.two-page-group{
+	position: absolute;
+    right: -14em;
+    top: -5.5em;
+}
+.two-page-group .item, .two-page-group .item-other{
+	position: absolute;
+	right: calc(var(--i)*7em);
+	width: calc(var(--w)*2.2em);
+	height: 27em;
+	overflow: hidden;
+	border-radius: 100px;
+	transform: rotateZ(220deg) translate(0,0);
+	background:rgb(240, 220, 150);
+	transition: .5s .5s;
+}
+.two-page-group .item:nth-child(2){
+	background: rgb(240, 190, 230);
+}
+.two-page-group .item-other{
+	left:-32em;
+	top:-10em;
+	width: 5em;
+	background-color: rgb(90, 220, 150);
+}
+
+.main-group:hover .two-page-group div{
+	transition: .5s calc(var(--i)*.1s);
+	transform: rotateZ(220deg) translate(-32em, 40em);
+}
+
+.main-group:hover .one-page-group{
+	transition: 1s .5s;
+	left:calc(100% - 30% - 10em);
+}
+.main-group:hover .one-page-group h3{
+	transition: 1s .5s;
+	opacity: 1;
+	margin-top:1em;
+} 
+.main-group:hover .one-page-group span{
+	transition: 1s .5s;
+	margin-top:1em;
+}
+
+.img-group{
+	width:14em;
+	height: 14em;
+	background: url(../1.jpg);
+	background-size: cover;
+	margin:0 5em;
+	opacity: 0;
+	transition: .5s;
+	border: #fff solid 5px;
+}
+.main-group:hover .img-group{
+	transition: 1s 1.3s;
+	opacity: 1;
+}

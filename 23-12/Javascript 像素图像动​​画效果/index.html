@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Javascript 像素图片动画效果</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="box">
+  <div id="pixel"></div>
+</div>
+<script>
+  // 定义横向、纵向像素点个数
+  let w = 30;
+  let h = 30;
+  // 定义生成像素点方法
+  function pixel() {
+    for (let i = 0; i < h; i++) {
+      for (let j = 0; j < w; j++) {
+        let span = document.createElement('span')
+        document.getElementById('pixel').appendChild(span)
+
+        span.style.left = j * 10 + 'px'
+        span.style.top = i * 10 + 'px'
+        span.style.backgroundPosition = `${-j * 10}px ${-i*10}px, center`
+        //
+        let random = Math.random() * 1.1
+        let randomFixed = random.toFixed(2)
+        span.style.animationDelay = randomFixed + 's';
+      }
+    }
+  }
+  // 执行生成
+  pixel()
+</script>
+</body>
+</html>

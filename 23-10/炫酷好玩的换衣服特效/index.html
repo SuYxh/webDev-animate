@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>炫酷好玩的换衣服特效</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shirt">
+  <img src="img/t-shirt.png" loading="lazy" alt="">
+  <div class="shirt__overlay">
+    <div class="shirt__overlay__pattern" style=""></div>
+    <img src="img/t-shirt-overlay-70c.png" alt="">
+  </div>
+</div>
+<ul class="select-dom">
+  <li></li>
+  <li><img src="img/swatch2-preview.png" alt=""></li>
+  <li><img src="img/swatch3-preview.png" alt=""></li>
+  <li><img src="img/swatch5-preview.png" alt=""></li>
+</ul>
+
+<script>
+  const shirtOverlayPattern = document.querySelector('.shirt__overlay__pattern')
+  const selectDom = document.querySelector('.select-dom')
+
+  const oli = selectDom.querySelectorAll('li')
+  for (let i = 0; i < oli.length; i++) {
+    oli[i].addEventListener('click', function(){
+      const img = this.querySelector('img')
+      shirtOverlayPattern.style.backgroundImage = `url(${img ? img.getAttribute('src') : ''})`
+    })
+  }
+
+</script>
+</body>
+</html>

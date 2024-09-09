@@ -1,0 +1,115 @@
+$clr: #a12db5;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #222;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 600px;
+  height: 400px;
+
+  .tabs {
+    width: 80px;
+    padding: 40px 0;
+    position: relative;
+
+    input {
+      display: none;
+
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}):checked ~ .icon label:nth-child(#{$i}) {
+          opacity: 1;
+        }
+        &:nth-child(#{$i}):checked ~ .icon .indicator {
+          top: 25% * ($i - 1);
+        }
+        &:nth-child(#{$i}):checked ~ .content .content-box:nth-child(#{$i}) {
+          opacity: 1;
+        }
+      }
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      label {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 2em;
+        color: #ffffff;
+        text-align: center;
+        opacity: 0.5;
+        z-index: 2;
+      }
+
+      .indicator {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 80px;
+        height: 80px;
+        background: $clr;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+        transition: 0.5s;
+
+        &::before {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: -20px;
+          background: transparent;
+          width: 20px;
+          height: 20px;
+          border-bottom-right-radius: 30px;
+          box-shadow: 8px 8px 0 8px $clr;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          bottom: -20px;
+          background: transparent;
+          width: 20px;
+          height: 20px;
+          border-top-right-radius: 30px;
+          box-shadow: 8px -8px 0 8px $clr;
+        }
+      }
+    }
+
+    .content {
+      position: absolute;
+      width: 520px;
+      height: 400px;
+      top: 0;
+      left: 80px;
+      background: linear-gradient(90deg, $clr, #df0d54);
+      border-radius: 20px;
+      color: #fff;
+
+      .content-box {
+        position: absolute;
+        inset: 0;
+        padding: 50px;
+        opacity: 0;
+        transition: 0.5s;
+      }
+    }
+  }
+}

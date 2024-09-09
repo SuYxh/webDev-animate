@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>创意菜单悬停文本动画</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<ul>
+  <li style="--clr: #00ade1">
+    <a href="#" data-text="&nbsp;Home">&nbsp;Home</a>
+  </li>
+  <li style="--clr: #ff6493">
+    <a href="#" data-text="&nbsp;About">&nbsp;About</a>
+  </li>
+  <li style="--clr: #ffdd1c">
+    <a href="#" data-text="&nbsp;Services">&nbsp;Services</a>
+  </li>
+  <li style="--clr: #00dc82">
+    <a href="#" data-text="&nbsp;Team">&nbsp;Team</a>
+  </li>
+  <li style="--clr: #dc00d4">
+    <a href="#" data-text="&nbsp;Contact">&nbsp;Contact</a>
+  </li>
+</ul>
+
+<script>
+  document.querySelectorAll('ul li a')
+    .forEach(text => {
+      text.innerHTML = text.innerText.split('')
+          .map(letters => `<span>${letters}</span>`).join('')
+      document.querySelectorAll('ul li a span')
+        .forEach(e => {
+          let duration = Math.random() * 5
+          // 完成动画时间
+          e.style.animationDuration = 0.25 + duration + 's'
+          // 延迟
+          e.style.animationDelay = 0.25 + duration + 's'
+        })
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义文字阴影效果</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <section>
+    <ul class="long-shadow">
+      <li>
+        <figure><span id="one">前</span></figure>
+      </li>
+      <li>
+        <figure><span id="two">端</span></figure>
+      </li>
+      <li>
+        <figure><span id="three">老</span></figure>
+      </li>
+      <li>
+        <figure><span id="four">鹰</span></figure>
+      </li>
+      <li>
+        <figure><span id="five">！</span></figure>
+      </li>
+    </ul>
+  </section>
+</div>
+</body>
+<script>
+  const $ = function (selector) {
+    return $.prototype.init(selector)
+  }
+  $.prototype.init = function (obj) {
+    this.element = document.querySelector(obj)
+    return this
+  }
+  $.prototype.longShadow = function (obj) {
+    let textShadow = '';
+    const color = obj.colorShadow;
+    for (let i = 0, len = obj.sizeShadow; i < len; i++) {
+      switch (obj.directionShadow) {
+        case 'top':
+          textShadow += '0 ' + -i + 'px 0' + color + ',';
+          break;
+        case 'right':
+          textShadow += i + 'px 0 0 ' + color + ',';
+          break;
+        case 'bottom':
+          textShadow += '0 ' + i + 'px 0 ' + color + ',';
+          break;
+        case 'left':
+          textShadow += -i + 'px ' + '0 0 ' + color + ',';
+          break;
+        case 'top-left':
+          textShadow += -i + 'px ' + -i + 'px 0 ' + color + ',';
+          break;
+        case 'top-right':
+          textShadow += i + 'px ' + -i + 'px 0 ' + color + ',';
+          break;
+        case 'bottom-left':
+          textShadow += -i + 'px ' + i + 'px 0 ' + color + ',';
+          break;
+        case 'bottom-right':
+          textShadow += i + 'px ' + i + 'px 0 ' + color + ',';
+          break;
+        default:
+          textShadow += i + 'px ' + i + 'px 0 ' + color + ',';
+          break;
+      }
+    }
+    this.element.style.textShadow = textShadow.slice(0, -1);
+  }
+
+  $('#one').longShadow({
+    colorShadow: '#a13c32',
+    sizeShadow: 70
+  });
+
+  $('#two').longShadow({
+    colorShadow: '#af7a4b',
+    sizeShadow: 70,
+    directionShadow: 'bottom-left'
+  });
+
+  $('#three').longShadow({
+    colorShadow: '#828f46',
+    sizeShadow: 20,
+    directionShadow: 'top'
+  });
+
+  $('#four').longShadow({
+    colorShadow: '#3b6767',
+    sizeShadow: 20,
+    directionShadow: 'bottom'
+  });
+
+  $('#five').longShadow({
+    colorShadow: '#3e9277',
+    sizeShadow: 70,
+    directionShadow: 'top-right'
+  });
+</script>
+</html>

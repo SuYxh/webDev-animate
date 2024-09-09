@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用CSS和Js创建响应式图像滑块</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="slider">
+    <div class="slides" style="--img: url('img/上官婉儿_妄想奇谈_海报.jpg')"></div>
+    <div class="slides" style="--img: url('img/姬小满_妄想食味_海报.jpg')"></div>
+    <div class="slides" style="--img: url('img/敖隐_凌霄真龙_海报.jpg')"></div>
+    <div class="slides" style="--img: url('img/澜_逐花归海_海报.jpg')"></div>
+    <div class="slides" style="--img: url('img/艾琳_流音漫舞_海报.png')"></div>
+    <div class="slides" style="--img: url('img/阿古朵_顽趣_海报.jpg')"></div>
+  </div>
+  <div class="buttons">
+    <div class="prev"><i class='bx bx-chevron-left'></i></div>
+    <div class="next"><i class='bx bx-chevron-right'></i></div>
+  </div>
+</div>
+<script>
+  const prev = document.querySelector('.prev')
+  const next = document.querySelector('.next')
+  const slider = document.querySelector('.slider')
+
+  next.addEventListener('click', () => {
+    let slides = slider.querySelectorAll('.slides')
+    slider.appendChild(slides[0])
+  })
+
+  prev.addEventListener('click', () => {
+    let slides = slider.querySelectorAll('.slides')
+    slider.prepend(slides[slides.length - 1])
+  })
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+  box-sizing: border-box;
+}
+
+section {
+  min-height: 100vh;
+  background: url("bg.jpg") no-repeat center;
+  background-size: cover;
+  animation: animateBg 5s linear infinite;
+}
+
+@keyframes animateBg {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  border-right: 2px solid rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  transition: .5s ease;
+}
+
+.sidebar.active {
+  width: 240px;
+}
+
+.sidebar .logo {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  width: 100%;
+  height: 50px;
+  pointer-events: none;
+  font-size: 28px;
+  opacity: 0;
+  transition: .3s ease;
+}
+
+.sidebar.active .logo {
+  transition-delay: .2s;
+  opacity: 1;
+}
+
+.sidebar .logo h3 {
+  font-size: 20px;
+}
+
+.sidebar #btn {
+  position: absolute;
+  color: #fff;
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.sidebar.active #btn {
+  left: 90%;
+}
+
+.sidebar ul {
+  margin-top: 20px;
+}
+
+.sidebar ul li {
+  list-style: none;
+  position: relative;
+  width: 100%;
+  margin: 5px 0;
+  line-height: 50px;
+}
+
+.sidebar ul li.active {
+  background: #327aff;
+}
+
+.sidebar ul li .tooltip {
+  position: absolute;
+  top: 0;
+  left: 130px;
+  transform: translate(-50%,-50%);
+  height: 35px;
+  background: #327aff;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  text-align: center;
+  line-height: 35px;
+  pointer-events: none;
+  width: 122px;
+  opacity: 0;
+}
+
+.sidebar.active ul li .tooltip {
+  display: none;
+}
+
+.sidebar ul li {
+  overflow: hidden;
+}
+.sidebar ul li:hover {
+  overflow: initial;
+}
+
+.sidebar ul li:hover .tooltip {
+  top: 50%;
+  transition: .5s ease;
+  opacity: 1;
+}
+
+.sidebar ul li .links-name {
+  opacity: 0;
+  transition:  opacity .3s ease;
+}
+
+.sidebar.active ul li .links-name {
+  opacity: 1;
+}
+
+.sidebar ul li input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border:none;
+  outline: none;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #ffffff;
+  padding-left: 50px;
+}
+
+.sidebar ul li .bx-search {
+  color: #ffffff;
+  font-size: 22px;
+  z-index: 1;
+}
+
+.sidebar ul li i {
+  min-width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.sidebar ul li a {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sidebar ul li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .list-logout {
+  position: absolute;
+  bottom: 0;
+  margin: 15px 0;
+  width: 64%;
+}
+
+.sidebar.active .list-logout {
+  width: 89%;
+}

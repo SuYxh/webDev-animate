@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>使用JS创建自定义圆形滑块</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+
+<div class='slider'>
+  <div class='knob'>
+    <div class='rotator'>
+      <div class='text'>0</div>
+    </div>
+    <div class='pointer'>
+      <i class='bx bxs-left-arrow bx-md'></i>
+    </div>
+  </div>
+
+  <svg width='300' height='300'>
+    <circle cx='150' cy='150' r='140'></circle>
+    <circle cx='150' cy='150' r='140' id='circle2' style='stroke: url(#gradient)'></circle>
+    <defs>
+      <linearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+        <stop offset='0%' style='stop-color: red'/>
+        <stop offset='50%' style='stop-color: orange'/>
+        <stop offset='100%' style='stop-color: #03d203'/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+</div>
+
+<script src='script.js'></script>
+</body>
+</html>

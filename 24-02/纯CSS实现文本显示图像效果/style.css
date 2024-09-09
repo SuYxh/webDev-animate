@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #060e1f;
+  overflow: hidden;
+}
+
+p {
+  height: 80vh;
+  overflow: hidden;
+  background: url("pic.png") no-repeat center;
+  background-clip: text;
+  -webkit-text-fill-color: #060e1f00;
+  background-size: 100%;
+  font-size: .5rem;
+  font-weight: 100;
+  line-height: .6rem;
+  animation: reveal 5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+p:hover {
+  cursor: pointer;
+  font-size: 6rem;
+  font-weight: 800;
+}
+
+@keyframes reveal {
+  0% {
+    line-height: 40rem;
+    background-size: 60%;
+  }
+  50% {
+    line-height: 10rem;
+    background-size: 100%;
+  }
+}
+

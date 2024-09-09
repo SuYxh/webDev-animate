@@ -1,0 +1,120 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #222;
+}
+
+* {
+  color: #888;
+  font-family: "Lato",Helvetica,sans-serif;
+}
+
+.wrap {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  margin: auto;
+  width: 150px;
+  height: 100px;
+  filter: url("#filt");
+  -webkit-filter: url("#filt");
+}
+.wrap .blob {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 10;
+  background-color: #F44336;
+  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+.bar {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin: 5px auto;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all 0.4s linear 0.1s;
+}
+.bar:first-child {
+  margin-top: 27px;
+}
+
+.wrap .blob[for="checking"] {
+  z-index: 30;
+  font-size: 60px;
+  text-align: center;
+  color: #fff;
+  transition: transform 0.5s ease-in-out 0.2s;
+}
+.wrap .blob:not([for="checking"]) {
+  width: 50px;
+  height: 50px;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  transition: all 0.5s ease-in-out;
+  background-color: #fff;
+}
+.wrap .blob:not([for="checking"]):hover {
+  color: #F44336;
+  animation: harlem 0.5s linear forwards;
+}
+@keyframes harlem {
+  0% { transform: translate(0) }
+  25% { transform: translate(5px, 5px) }
+  50% { transform: translate(-5px, -5px) }
+  75% { transform: translate(2px, 2px) }
+  100% { transform: translate(0) }
+}
+
+.wrap > #checking:checked ~ .blob:nth-child(2) {
+  margin-left: 85px;
+  margin-top: 10px;
+}
+.wrap > #checking:checked ~ .blob:nth-child(3) {
+  margin-top: 145px;
+  margin-left: 65px;
+}
+.wrap > #checking:checked ~ .blob:nth-child(4) {
+  margin-top: 160px;
+  margin-left: 10px;
+}
+.wrap > #checking:checked ~ .blob:nth-child(5) {
+  margin-top: 85px;
+  margin-left: 10px;
+}
+.wrap > #checking:checked ~ .blob:nth-child(6) {
+  margin-top: 63px;
+  margin-left: 63px;
+}
+.wrap > #checking:checked ~ .blob:nth-child(7) {
+  margin-top: 65px;
+  margin-left: 145px;
+}
+.wrap > #checking:checked ~ .blob:nth-child(8) {
+  margin-top: 112px;
+  margin-left: 112px;
+}
+.wrap > #checking:checked ~ .blob:nth-child(9) {
+  margin-top: 10px;
+  margin-left: 160px;
+}
+.wrap > #checking:checked ~ .blob[for="checking"] > .bar:nth-child(1) {
+  transform: rotate(45deg);
+  margin-top: 37px;
+}
+.wrap > #checking:checked ~ .blob[for="checking"] > .bar:nth-child(2) {
+  transform: rotate(-45deg);
+  margin-top: -10px;
+}
+.wrap > #checking:checked ~ .blob[for="checking"] > .bar:nth-child(3) {
+  opacity: 0;
+}

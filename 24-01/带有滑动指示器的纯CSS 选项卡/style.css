@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #222;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 600px;
+  height: 400px;
+}
+.container .tabs {
+  width: 80px;
+  padding: 40px 0;
+  position: relative;
+}
+.container .tabs input {
+  display: none;
+}
+.container .tabs input:nth-child(1):checked ~ .icon label:nth-child(1) {
+  opacity: 1;
+}
+.container .tabs input:nth-child(1):checked ~ .icon .indicator {
+  top: 0%;
+}
+.container .tabs input:nth-child(1):checked ~ .content .content-box:nth-child(1) {
+  opacity: 1;
+}
+.container .tabs input:nth-child(2):checked ~ .icon label:nth-child(2) {
+  opacity: 1;
+}
+.container .tabs input:nth-child(2):checked ~ .icon .indicator {
+  top: 25%;
+}
+.container .tabs input:nth-child(2):checked ~ .content .content-box:nth-child(2) {
+  opacity: 1;
+}
+.container .tabs input:nth-child(3):checked ~ .icon label:nth-child(3) {
+  opacity: 1;
+}
+.container .tabs input:nth-child(3):checked ~ .icon .indicator {
+  top: 50%;
+}
+.container .tabs input:nth-child(3):checked ~ .content .content-box:nth-child(3) {
+  opacity: 1;
+}
+.container .tabs input:nth-child(4):checked ~ .icon label:nth-child(4) {
+  opacity: 1;
+}
+.container .tabs input:nth-child(4):checked ~ .icon .indicator {
+  top: 75%;
+}
+.container .tabs input:nth-child(4):checked ~ .content .content-box:nth-child(4) {
+  opacity: 1;
+}
+.container .tabs .icon {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.container .tabs .icon label {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 2em;
+  color: #ffffff;
+  text-align: center;
+  opacity: 0.5;
+  z-index: 2;
+}
+.container .tabs .icon .indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80px;
+  height: 80px;
+  background: #a12db5;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  transition: 0.5s;
+}
+.container .tabs .icon .indicator::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -20px;
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 8px 8px 0 8px #a12db5;
+}
+.container .tabs .icon .indicator::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  border-top-right-radius: 30px;
+  box-shadow: 8px -8px 0 8px #a12db5;
+}
+.container .tabs .content {
+  position: absolute;
+  width: 520px;
+  height: 400px;
+  top: 0;
+  left: 80px;
+  background: linear-gradient(90deg, #a12db5, #df0d54);
+  border-radius: 20px;
+  color: #fff;
+}
+.container .tabs .content .content-box {
+  position: absolute;
+  inset: 0;
+  padding: 50px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/*# sourceMappingURL=style.css.map */

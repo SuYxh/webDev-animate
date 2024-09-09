@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  
+
+  <div id="app">
+    <ul id="container" @click.native="handleItemClick">
+      <li>项目 1</li>
+      <li>项目 2</li>
+      <li>项目 3</li>
+      <li>项目 4</li>
+      <div>我是一个DIV</div>
+    </ul>
+  </div>
+
+<script type="module">
+  import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+  createApp({
+    setup() {
+      const handleItemClick = (event) => {
+        if (event.target.tagName === 'LI') {
+          console.log(event.target.textContent);
+        }
+      }
+
+      return {
+        handleItemClick
+      }
+    }
+  }).mount('#app')
+</script>
+
+</body>
+</html>

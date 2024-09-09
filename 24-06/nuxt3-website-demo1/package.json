@@ -1,0 +1,24 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@iconify-json/formkit": "^1.1.8",
+    "@nuxt/devtools": "latest",
+    "@types/node": "^18.17.1",
+    "@unocss/nuxt": "^0.60.4",
+    "@unocss/preset-icons": "^0.60.4",
+    "@unocss/transformer-directives": "^0.60.4",
+    "nuxt": "^3.11.2",
+    "sass": "^1.77.4"
+  },
+  "dependencies": {
+    "@unocss/reset": "^0.60.4"
+  }
+}

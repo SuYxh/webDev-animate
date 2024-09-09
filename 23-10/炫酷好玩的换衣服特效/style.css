@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+body {
+    background: #404749;
+    background: radial-gradient(#404749 0%, #404749 85%, #303535);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shirt {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.shirt img {
+    max-height: 90%;
+    max-width: 90%;
+    margin: auto;
+    position: relative;
+}
+
+.shirt__overlay {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shirt__overlay__pattern {
+    position: absolute;
+    top: 0%;
+    left: 5%;
+    width: 90%;
+    height: 100%;
+    -webkit-mask-image: url(img/shirt-mask.png);
+    mask-image: url(img/shirt-mask.png);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+.shirt__overlay img {
+    mix-blend-mode: multiply;
+}
+
+.select-dom li {
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ffffff;
+    border: #ffffff solid 2px;
+    margin-bottom: 10px;
+}
+

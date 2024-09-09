@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  background: #222;
+}
+.load-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+}
+.box-wrapper {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  transform: rotate(48deg) skew(-200deg, -24deg);
+  transform-origin: center center;
+}
+.box-wrapper div {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  width: 25%;
+  height: 25%;
+  background: transparent;
+  display: block;
+  transform-origin: left bottom;
+}
+.box-wrapper > div:nth-child(2) {
+  transform: rotate(90deg);
+}
+.box-wrapper > div:nth-child(3) {
+  transform: rotate(180deg);
+}
+.box-wrapper > div:nth-child(4) {
+  transform: rotate(270deg);
+}
+.box-wrapper div > span {
+  position: absolute;
+  display: block;
+  animation: move 12s ease-in-out infinite;
+  background: #fff200;
+  border-radius: 5px;
+}
+.box-wrapper div:nth-child(2) > span {
+  background: #ff253f;
+}
+.box-wrapper div:nth-child(3) > span {
+  background: #25d366;
+}
+.box-wrapper div:nth-child(4) > span {
+  background: #2483ff;
+}
+.load-wrapper p {
+  font-size: 2rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.2rem;
+  text-transform: capitalize;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+}
+@keyframes move {
+  0%,
+  100% { left: 0; top: 0; width: 100%; height: 100% }
+  4.16% { left: 0; top: 0; width: 200%; height: 100% }
+  8.33% { left: 100%; top: 0; width: 100%; height: 100% }
+  12.5% { left: 100%; top: 0; width: 100%; height: 200% }
+  16.66% { left: 100%; top: 100%; width: 100%; height: 100% }
+  20.83% { left: 0; top: 100%; width: 200%; height: 100% }
+  25% { left: 0; top: 100%; width: 100%; height: 100% }
+  29.16% { left: 0; top: 100%; width: 100%; height: 200% }
+  33.33% { left: 0; top: 200%; width: 100%; height: 100% }
+  37.5% { left: -100%; top: 200%; width: 200%; height: 100% }
+  41.66% { left: -100%; top: 200%; width: 100%; height: 100% }
+  45.83% { left: -100%; top: 100%; width: 100%; height: 200% }
+  50% { left: -100%; top: 100%; width: 100%; height: 100% }
+  54.16% { left: -200%; top: 100%; width: 200%; height: 100% }
+  58.33% { left: -200%; top: 100%; width: 100%; height: 100% }
+  62.5% { left: -200%; top: 0; width: 100%; height: 200% }
+  66.66% { left: -200%; top: 0; width: 100%; height: 100% }
+  70.83% { left: -200%; top: 0; width: 200%; height: 100% }
+  75% { left: -100%; top: 0; width: 100%; height: 100% }
+  79.16% { left: -100%; top: -100%; width: 100%; height: 200% }
+  83.33% { left: -100%; top: -100%; width: 100%; height: 100% }
+  87.5% { left: -100%; top: -100%; width: 200%; height: 100% }
+  91.66% { left: 0; top: -100%; width: 100%; height: 100% }
+  95.83% { left: 0; top: -100%; width: 100%; height: 200% }
+}

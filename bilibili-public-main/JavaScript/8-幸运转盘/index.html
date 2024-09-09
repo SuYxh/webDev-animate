@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>制作幸运旋转盘游戏</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="spin"></div>
+      <div class="wheel">
+        <div class="number" style="--i: 1; --color: #db7093">
+          <span>520w</span>
+        </div>
+        <div class="number" style="--i: 2; --color: #20b2aa">
+          <span>1w</span>
+        </div>
+        <div class="number" style="--i: 3; --color: #b63e92">
+          <span>20w</span>
+        </div>
+        <div class="number" style="--i: 4; --color: #daa520">
+          <span>2000w</span>
+        </div>
+        <div class="number" style="--i: 5; --color: #ff7f50">
+          <span>10w</span>
+        </div>
+        <div class="number" style="--i: 6; --color: #ff340f">
+          <span>1w</span>
+        </div>
+        <div class="number" style="--i: 7; --color: #3cb371">
+          <span>2w</span>
+        </div>
+        <div class="number" style="--i: 8; --color: #4169e1">
+          <span>888w</span>
+        </div>
+      </div>
+    </div>
+    <!-- 🎉礼花筒效果 confetti 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script>
+      const wheel = document.querySelector(".wheel");
+      const spin = document.querySelector(".spin");
+      let value = Math.ceil(Math.random() * 3600);
+      spin.addEventListener("click", () => {
+        wheel.style.transform = `rotate(${value}deg)`;
+        value += Math.ceil(Math.random() * 3600);
+      });
+      wheel.addEventListener("transitionend", () => {
+        confetti();
+      });
+    </script>
+  </body>
+</html>

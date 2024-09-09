@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS和Javascript实现下雨闪电动画</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="cloud"></div>
+</div>
+<script>
+  function rain() {
+    let cloud = document.querySelector('.cloud')
+    // 创建雨
+    let e = document.createElement('div')
+    // 添加样式
+    e.classList.add('drop')
+    // 给添加的雨水添加随机属性
+    const left = Math.floor(Math.random() * 320)
+    const width = Math.random() * 5
+    const height = Math.random() * 50
+    const duration = Math.random() * 0.5
+
+    e.style.left = left + 'px'
+    e.style.width = width + 'px'
+    e.style.height = height + 'px'
+    e.style.animationDuration = 1 + duration + 's'
+
+    // 插入到div中
+    cloud.appendChild(e)
+    setTimeout(() => {
+      cloud.removeChild(e)
+    }, 2000)
+  }
+  setInterval(() => {
+    rain()
+  }, 20)
+</script>
+
+
+</body>
+</html>

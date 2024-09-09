@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>如何使网站中的眼睛跟随鼠标</title>
+    <link rel='stylesheet' href='style.css'>
+  </head>
+  <body>
+
+  <div class='center'>
+    <div class='face'>
+      <div class='eye'>
+        <div class='ball'></div>
+      </div>
+      <div class='eye'>
+        <div class='ball'></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const eysBalls = document.querySelectorAll('.ball');
+
+    document.addEventListener('mousemove', e => {
+      let mouseX = e.clientX
+      let mouseY = e.clientY
+
+      eysBalls.forEach(ball => {
+        const eyeRect = ball.getBoundingClientRect()
+        // 获取中心点位置
+        const eyeCenterX = eyeRect.left + eyeRect.width / 2
+        const eyeCenterY = eyeRect.top + eyeRect.height / 2
+        // 获取角度 -PI 到 PI
+        const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX)
+
+        let translateX = Math.cos(angle) * (eyeRect.width / 2 - 8)
+        let translateY = Math.sin(angle) * (eyeRect.height / 2 - 8)
+
+        ball.style.transform = `translate(${translateX}px, ${translateY}px)`
+      })
+
+
+    })
+
+
+  </script>
+
+  </body>
+</html>

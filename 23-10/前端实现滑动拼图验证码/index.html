@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端实现滑动拼图验证码</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+      }
+      .check {
+          width: 375px;
+          height: 250px;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          background-image: url(https://img0.baidu.com/it/u=1861595720,3186454180&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500);
+      }
+      .check-content {
+          width: 50px;
+          height: 50px;
+          background: rgba(0, 0, 0, 0.5);
+          border: 1px solid #fff;
+          position: absolute;
+          top: 100px;
+          left: 280px;
+      }
+      .check-block{
+          width: 50px;
+          height: 50px;
+          border: 1px solid #fff;
+          /* 直接继承父级 */
+          background-image: inherit;
+          background-repeat: inherit;
+          background-size: 400px 300px;
+          /* 设置为校验区域的坐标位置 */
+          background-position: -280px -100px;
+          position: absolute;
+          top: 100px;
+          left: 10px;
+      }
+      .drag {
+          width: 375px;
+          height: 50px;
+          background-color: #e3e3e3;
+          margin-top: 10px;
+          position: relative;
+      }
+      .drag-block {
+          width: 50px;
+          height: 50px;
+          background-color: yellowgreen;
+          z-index: 10;
+          position: absolute;
+          top: 0;
+          left: 0;
+      }
+      .drag-tips{
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          width: 95%;
+          height: 100%;
+          margin: 0 auto;
+          font-size: 12px;
+          color: #8a8a8a;
+      }
+  </style>
+</head>
+<body>
+<div class="check">
+  <div class="check-content"></div>
+  <div class="check-block"></div>
+</div>
+
+<div class="drag">
+  <div class="drag-block"></div>
+  <div class="drag-tips">
+    <span>按住左边按钮向右拖动完成上方图像验证</span>
+  </div>
+</div>
+
+<script>
+  // 随机生成一个x,y坐标 用于设置校验块的位置
+  let x = random(0, 325), y = random(0, 200)
+  // 定义个运动状态 如果为true代表鼠标已经按下
+  let animating = false
+  // 存储鼠标按下的x坐标
+  let startX = 0
+  // 存储移动的位置
+  let offsetX = 0
+  // 获取校验区域
+  const drag = document.querySelector('.drag')
+  // 获取拖拽的滑块
+  const dragBlock = document.querySelector('.drag-block')
+  //
+  const checkContent = document.querySelector('.check-content')
+  const checkBlock = document.querySelector('.check-block')
+  // 设置位置
+  checkContent.style.cssText = `left:${x}px; top:${y}px`
+  checkBlock.style.cssText = `background-position: -${x}px -${y}px; top: ${y}px`
+  // 添加鼠标移动事件
+  drag.addEventListener('mousemove', (event) => {
+    if (!animating) { return }
+    // 获取当前 x 轴坐标
+    const { pageX } = event
+    offsetX = pageX - startX
+    if (offsetX < 0 || offsetX > 350) { return }
+    // 修改可移动盒子的 x 轴坐标
+    dragBlock.style.transform = `translateX(${offsetX}px)`
+    // 设置被验证滑块left值
+    checkBlock.style.left = `${offsetX}px`
+  })
+
+  // 添加鼠标按下事件
+  dragBlock.addEventListener('mousedown', (e) => {
+    animating = true
+    startX = e.pageX
+  })
+  // 添加鼠标弹起事件
+  document.addEventListener('mouseup', () => {
+    animating = false
+    // 根据移动的位置判断是否成功
+    if (offsetX >= x - 2 && offsetX <= x + 2){
+      alert('成功')
+    } else {
+      // 验证失败 滑块和被验证块恢复坐标
+      dragBlock.style.transform = `translateX(0px)`
+      checkBlock.style.left = `0px`
+    }
+  })
+  //
+  /**
+   * 随机函数
+   * @param min 最小值
+   * @param max 最大值
+   */
+   function random(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min)
+   }
+</script>
+
+</body>
+</html>

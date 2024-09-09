@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css3垂直循环滚动效果</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="main-group">
+  <div class="items-group" style="--delay:-1;">
+    <div class="items-box">
+      <div class="img"><img src="imgs/t1.png" alt=""></div>
+      <div class="desc"><span class="name">前端老鹰爱1</span>
+        <p>为了你的生蚝，努力加油等待！</p>
+      </div>
+    </div>
+    <a class="follow-btn " href="javascript:void(0);">关注+</a>
+  </div>
+  <div class="items-group" style="--delay:0;">
+    <div class="items-box">
+      <div class="img"><img src="imgs/t2.png" alt=""></div>
+      <div class="desc"><span class="name">前端老鹰爱2</span>
+        <p>为了你的生蚝，努力加油等待！</p>
+      </div>
+    </div>
+    <a class="follow-btn " href="javascript:void(0);">关注+</a>
+  </div>
+  <div class="items-group" style="--delay:1;">
+    <div class="items-box">
+      <div class="img"><img src="imgs/t3.png" alt=""></div>
+      <div class="desc"><span class="name">前端老鹰爱3</span>
+        <p>为了你的生蚝，努力加油等待！</p>
+      </div>
+    </div>
+    <a class="follow-btn " href="javascript:void(0);">关注+</a>
+  </div>
+  <div class="items-group" style="--delay:2;">
+    <div class="items-box">
+      <div class="img"><img src="imgs/t4.png" alt=""></div>
+      <div class="desc"><span class="name">前端老鹰爱4</span>
+        <p>为了你的生蚝，努力加油等待！</p>
+      </div>
+    </div>
+    <a class="follow-btn del-follow" href="javascript:void(0);">取消-</a>
+  </div>
+  <div class="items-group" style="--delay:2;">
+    <div class="items-box">
+      <div class="img"><img src="imgs/t5.png" alt=""></div>
+      <div class="desc"><span class="name">前端老鹰爱5</span>
+        <p>为了你的生蚝，努力加油等待！</p>
+      </div>
+    </div>
+    <a class="follow-btn " href="javascript:void(0);">关注+</a>
+  </div>
+</section>
+
+<script>
+  const $itemsGroup = document.querySelectorAll('.items-group')
+  const $mainGroup = document.querySelector('.main-group')
+
+  for (let i = 0; i < $itemsGroup.length; i++) {
+    $itemsGroup[i].addEventListener('mouseover', () => {
+      $mainGroup.classList.add('no-animation')
+    })
+    $itemsGroup[i].addEventListener('mouseout', () => {
+      $mainGroup.classList.remove('no-animation')
+    })
+  }
+</script>
+</body>
+</html>

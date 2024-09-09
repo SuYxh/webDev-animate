@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用原生javascript拖拽排序</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>按照你的选择排序</h1>
+<section>
+  <div class="choice">
+    <p draggable="true">Samsung</p>
+    <p draggable="true">HP</p>
+    <p draggable="true">Asus</p>
+    <p draggable="true">Apple</p>
+    <p draggable="true">Microsoft</p>
+    <p draggable="true">Dell</p>
+  </div>
+  <div class="choice"></div>
+  <div class="choice"></div>
+  <div class="choice"></div>
+  <div class="choice"></div>
+</section>
+
+<script>
+  const p = document.querySelectorAll('p');
+  const choice = document.querySelectorAll('.choice');
+  let dragItem = null
+
+  for (const pElement of p) {
+    pElement.addEventListener('dragstart', dragStart)
+    pElement.addEventListener('dragend', dragEnd)
+  }
+
+  function dragStart() {
+    dragItem = this
+    this.classList.add('dragging')
+  }
+
+  function dragEnd() {
+    dragItem = null
+    this.classList.remove('dragging')
+  }
+
+  for (const choiceElement of choice) {
+    choiceElement.addEventListener('dragover', dragOver)
+    choiceElement.addEventListener('dragleave', dragLeave)
+    choiceElement.addEventListener('dragenter', dragEnter)
+    choiceElement.addEventListener('mouseleave', dragLeave)
+  }
+
+  function dragOver(e) {
+    e.preventDefault()
+    const afterElement = getDragAfterElement(this, e.clientY)
+    if (!afterElement) {
+      this.appendChild(dragItem)
+    } else {
+      this.insertBefore(dragItem, afterElement)
+    }
+  }
+
+  function dragLeave() {
+    // this.style.border = 'none'
+  }
+
+  function dragEnter(e) {
+    e.preventDefault()
+  }
+
+  function getDragAfterElement(choiceElement, y) {
+    const dragAfterElement = [...choiceElement.querySelectorAll('p:not(.dragging)')]
+    return dragAfterElement.reduce((closest, child) => {
+      const box = child.getBoundingClientRect()
+      const offset = y - box.top - box.height / 2
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: child }
+      } else {
+        return closest
+      }
+    }, { offset: Number.NEGATIVE_INFINITY }).element
+  }
+
+</script>
+
+</body>
+</html>

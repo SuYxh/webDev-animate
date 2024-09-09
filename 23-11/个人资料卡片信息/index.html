@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>个人资料卡片信息</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<main>
+		<div class="single-box">
+			<div class="header-area img1"></div>
+			<div class="body-area">
+				<h3>Jason Willams</h3>
+				<h4>Full Stack Developer</h4>
+				<p class="socials"><i class="fa fa-facebook"></i> <i class="fa fa-twitter"></i> <i class="fa fa-pinterest"></i> <i class="fa fa-linkedin"></i></p><button id="modal-button">Learn More</button>
+			</div>
+		</div>
+		<article id="modal-container">
+			<section id="modal-section">
+				<button id="modal-close-button">X</button>
+				<h3 id="modal-title">My Skillset</h3>
+				<p id="modal-content"></p>
+				<div class="skill-box">
+					<p>HTML</p>
+					<div class="skill-area">
+						<div class="skills" style="width: 90%">
+							90%
+						</div>
+					</div>
+					<p>CSS</p>
+					<div class="skill-area">
+						<div class="skills" style="width: 75%">
+							75%
+						</div>
+					</div>
+					<p>Javascript</p>
+					<div class="skill-area">
+						<div class="skills" style="width: 65%">
+							65%
+						</div>
+					</div>
+					<p>React</p>
+					<div class="skill-area">
+						<div class="skills" style="width: 75%">
+							75%
+						</div>
+					</div>
+				</div>
+				<p></p>
+			</section>
+		</article>
+	</main>
+	<script>
+		let X = document.getElementById('modal-button');
+			let modal = document.getElementById('modal-container');
+			let Y = document.getElementById('modal-close-button');
+
+			X.onclick = function() {
+			 modal.style.display = "block";
+			}
+
+			Y.onclick = function() {
+			 modal.style.display = "none";
+			}
+	</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片放大镜(抖音搜索：前端老鹰)</title>
+  <style>
+      body{
+          background-color: #252424
+      }
+      .img{
+          width: 400px;
+          margin: 20px;
+      }
+  </style>
+</head>
+<body>
+<img id="img" class="img" src="imgs/1.jpg"  alt=""/>
+
+<script>
+  const $img = document.querySelector('#img')
+
+  // 创建放大镜的div
+  const $gls = document.createElement('div')
+  // 创建放大后的图片
+  const $glsImg = document.createElement('img')
+  // 设置放大后的图片地址
+  $glsImg.setAttribute('src', $img.getAttribute('src'))
+  $gls.appendChild($glsImg)
+  $img.parentNode.appendChild($gls)
+
+  // 放大镜的宽度，图片放大倍数
+  const d = 100, s = 2
+
+  $gls.parentNode.style = `position:relative`
+  $gls.style.cssText = `
+    width: ${d}px;
+    height: ${d}px;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 2;
+    overflow: hidden;
+    background-color: black;
+    top: 0;
+    left: 0;
+  `
+  $glsImg.style.cssText = `
+    width: ${$img.offsetWidth * s}px;
+    margin-left: ${d / 2}px;
+    margin-top: ${d / 2}px;
+  `
+
+  // 克隆图片节点放在最上层作为触发鼠标移动事件的对象
+  const cloneImg = $img.cloneNode()
+  const { margin, left, top: topPosition, right, bottom } = window.getComputedStyle($img, null)
+  cloneImg.style.cssText = `
+    position: absolute;
+    margin: ${margin};
+    left: ${left};
+    top: ${topPosition};
+    right: ${right};
+    bottom: ${bottom};
+    cursor: crosshair;
+    z-index: 3;
+    opacity: 0;
+  `
+  $img.parentNode.appendChild(cloneImg)
+  // 为了保证克隆的图片和原始图片能叠放在一起设置原始图片样式
+  $img.style.cssText = `
+    position: absolute;
+    z-index: 1
+  `
+
+  // 添加鼠标事件
+  cloneImg.addEventListener('mousemove', e => {
+    // 设置放大镜位置
+    $gls.style.top = e.pageY - (d / 2) + 'px'
+    $gls.style.left = e.pageX - (d / 2) + 'px'
+    // 设置放大后的图片位置
+    $glsImg.style.marginTop = (d / 2) - e.offsetY * s + 'px'
+    $glsImg.style.marginLeft = (d / 2) - e.offsetX * s + 'px'
+  })
+  cloneImg.addEventListener('mouseenter', () => {
+    $gls.style.display = 'block'
+  })
+  cloneImg.addEventListener('mouseleave', () => {
+    $gls.style.display = 'none'
+  })
+</script>
+</body>
+</html>
